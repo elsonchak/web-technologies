@@ -1,0 +1,1435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Elson Chakonza's Web Technologies student profile and mini-portfolio.">
+    <title>Elson Chakonza | Student profile</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;500;600;700&family=Recursive:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --paper: #f1f5f2;
+            --surface: #ffffff;
+            --chalkboard: #143b34;
+            --chalkboard-deep: #10241f;
+            --ink: #10241f;
+            --muted-ink: #4d625d;
+            --rule: #a9b8b2;
+            --solar: #f2c94c;
+            --solar-deep: #d7aa25;
+            --error: #a33a2b;
+            --error-light: #f3a69a;
+            --success: #2e6a49;
+            --chalk: #f7faf7;
+            --chalk-muted: rgba(247, 250, 247, 0.74);
+            --chalk-rule: rgba(247, 250, 247, 0.22);
+            --font-display: "Recursive", "Trebuchet MS", sans-serif;
+            --font-body: "Atkinson Hyperlegible Next", Arial, sans-serif;
+            --font-mono: "Recursive", "Courier New", monospace;
+            --body-size: 1.125rem;
+            --body-leading: 1.65;
+            --content-max: 80rem;
+            --mobile-breakpoint: 47.5rem;
+            --control-height: 3rem;
+            --focus-width: 2px;
+            --focus-offset: 3px;
+            --focus-shadow: 0 0 0 3px rgba(242, 201, 76, 0.28);
+            --radius-chamfer: 0.75rem 0 0.75rem 0;
+            --space-1: 0.5rem;
+            --space-2: 0.75rem;
+            --space-3: 1rem;
+            --space-4: 1.5rem;
+            --space-5: 2rem;
+            --space-6: 3rem;
+            --space-7: 5rem;
+            --space-8: 7rem;
+            --transition-fast: 160ms ease;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-width: 18rem;
+            margin: 0;
+            overflow-x: hidden;
+            background: var(--paper);
+            color: var(--ink);
+            font-family: var(--font-body);
+            font-size: var(--body-size);
+            line-height: var(--body-leading);
+        }
+
+        ::selection {
+            background: var(--solar);
+            color: var(--ink);
+        }
+
+        a {
+            color: inherit;
+        }
+
+        button,
+        input,
+        textarea {
+            font: inherit;
+        }
+
+        button,
+        a {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        :focus-visible {
+            outline: var(--focus-width) solid var(--solar);
+            outline-offset: var(--focus-offset);
+        }
+
+        [hidden] {
+            display: none !important;
+        }
+
+        h1,
+        h2,
+        h3,
+        p,
+        ul,
+        dl {
+            margin-block: 0;
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: var(--ink);
+            font-family: var(--font-display);
+            font-weight: 600;
+            line-height: 1.05;
+        }
+
+        ul {
+            padding: 0;
+            list-style: none;
+        }
+
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        .skip-link {
+            position: fixed;
+            z-index: 20;
+            top: var(--space-3);
+            left: var(--space-3);
+            padding: 0.65rem 0.9rem;
+            transform: translateY(-160%);
+            background: var(--solar);
+            color: var(--ink);
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .skip-link:focus {
+            transform: translateY(0);
+        }
+
+        .shell {
+            width: min(100% - 3rem, var(--content-max));
+            margin-inline: auto;
+        }
+
+        .site-header {
+            border-bottom: 1px solid var(--rule);
+        }
+
+        .masthead {
+            display: flex;
+            align-items: center;
+            gap: var(--space-5);
+            min-height: 4.25rem;
+        }
+
+        .wordmark {
+            color: var(--chalkboard);
+            font-family: var(--font-mono);
+            font-size: 0.86rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .masthead-label {
+            margin-right: auto;
+            color: var(--muted-ink);
+            font-size: 0.88rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        .site-nav {
+            display: flex;
+            align-items: center;
+            gap: var(--space-4);
+        }
+
+        .site-nav a {
+            position: relative;
+            padding-block: 0.35rem;
+            color: var(--muted-ink);
+            font-size: 0.95rem;
+            text-decoration: none;
+        }
+
+        .site-nav a::after {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            height: 2px;
+            transform: scaleX(0);
+            transform-origin: left;
+            background: var(--solar);
+            content: "";
+            transition: transform var(--transition-fast);
+        }
+
+        .site-nav a:hover,
+        .site-nav a:focus-visible,
+        .site-nav a[aria-current="location"] {
+            color: var(--ink);
+        }
+
+        .site-nav a:hover::after,
+        .site-nav a:focus-visible::after,
+        .site-nav a[aria-current="location"]::after {
+            transform: scaleX(1);
+        }
+
+        .menu-toggle {
+            display: none;
+            align-items: center;
+            gap: 0.55rem;
+            min-height: 2.75rem;
+            padding: 0.5rem 0;
+            border: 0;
+            background: transparent;
+            color: var(--ink);
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 700;
+        }
+
+        .menu-mark {
+            display: grid;
+            gap: 0.3rem;
+            width: 1.35rem;
+        }
+
+        .menu-mark::before,
+        .menu-mark::after {
+            display: block;
+            height: 2px;
+            background: currentColor;
+            content: "";
+            transition: transform var(--transition-fast);
+        }
+
+        .menu-toggle[aria-expanded="true"] .menu-mark::before {
+            transform: translateY(0.25rem) rotate(45deg);
+        }
+
+        .menu-toggle[aria-expanded="true"] .menu-mark::after {
+            transform: translateY(-0.25rem) rotate(-45deg);
+        }
+
+        .intro {
+            display: grid;
+            grid-template-columns: repeat(12, minmax(0, 1fr));
+            gap: var(--space-6) var(--space-5);
+            align-items: end;
+            min-height: min(72vh, 49rem);
+            padding-block: var(--space-8) var(--space-7);
+        }
+
+        .intro-copy {
+            grid-column: 1 / span 7;
+        }
+
+        .intro-kicker,
+        .panel-kicker,
+        .section-caption,
+        .project-kicker,
+        .field-help,
+        .project-status,
+        .footer-meta {
+            color: var(--muted-ink);
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            letter-spacing: 0.04em;
+            line-height: 1.45;
+        }
+
+        .intro-kicker {
+            margin-bottom: var(--space-4);
+            color: var(--chalkboard);
+            text-transform: uppercase;
+        }
+
+        .intro-kicker::before,
+        .section-number::before,
+        .panel-kicker::before,
+        .project-kicker::before {
+            display: inline-block;
+            width: 1.2rem;
+            height: 0.15rem;
+            margin: 0 0.5rem 0.2rem 0;
+            background: var(--solar);
+            content: "";
+        }
+
+        .intro h1 {
+            max-width: 8ch;
+            margin-left: -0.07em;
+            color: var(--chalkboard);
+            font-size: clamp(3.8rem, 10vw, 8rem);
+            letter-spacing: -0.09em;
+            line-height: 0.84;
+        }
+
+        .name-dot {
+            color: var(--solar-deep);
+        }
+
+        .intro-lead {
+            max-width: 34rem;
+            margin-top: var(--space-5);
+            color: var(--muted-ink);
+            font-size: clamp(1.2rem, 2.2vw, 1.5rem);
+            line-height: 1.45;
+        }
+
+        .intro-actions {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: var(--space-4);
+            margin-top: var(--space-6);
+        }
+
+        .button-primary,
+        .link-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: var(--control-height);
+            padding: 0.7rem 1.1rem;
+            border: 1px solid var(--solar);
+            border-radius: var(--radius-chamfer);
+            background: var(--solar);
+            color: var(--ink);
+            cursor: pointer;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background-color var(--transition-fast), transform var(--transition-fast);
+        }
+
+        .button-primary:hover,
+        .link-primary:hover {
+            background: var(--solar-deep);
+        }
+
+        .button-primary:active,
+        .link-primary:active {
+            transform: translateY(1px);
+        }
+
+        .button-primary:disabled {
+            cursor: wait;
+            opacity: 0.75;
+        }
+
+        .text-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            color: var(--ink);
+            font-weight: 700;
+            text-decoration-thickness: 1px;
+            text-underline-offset: 0.3rem;
+        }
+
+        .text-link span {
+            transition: transform var(--transition-fast);
+        }
+
+        .text-link:hover span,
+        .text-link:focus-visible span {
+            transform: translateX(0.25rem);
+        }
+
+        .focus-panel {
+            position: relative;
+            grid-column: 9 / -1;
+            align-self: center;
+            padding: var(--space-6) var(--space-5);
+            overflow: hidden;
+            border-radius: var(--radius-chamfer);
+            background: var(--chalkboard);
+            color: var(--chalk);
+        }
+
+        .focus-panel::before {
+            position: absolute;
+            top: 1.25rem;
+            right: 1.25rem;
+            width: 2.3rem;
+            height: 2.3rem;
+            border-top: 2px solid var(--solar);
+            border-right: 2px solid var(--solar);
+            content: "";
+        }
+
+        .focus-panel::after {
+            position: absolute;
+            right: 3.5rem;
+            bottom: 1.5rem;
+            width: 0.35rem;
+            height: 0.35rem;
+            border-radius: 50%;
+            background: var(--solar);
+            box-shadow: 1rem -0.35rem 0 var(--chalk), 1.9rem 0.25rem 0 var(--solar);
+            content: "";
+            opacity: 0.85;
+        }
+
+        .focus-panel h2 {
+            margin-top: var(--space-5);
+            color: var(--chalk);
+            font-size: 1rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .focus-panel .panel-kicker {
+            color: var(--chalk-muted);
+        }
+
+        .focus-copy {
+            max-width: 25rem;
+            margin-top: var(--space-3);
+            font-size: 1.35rem;
+            line-height: 1.35;
+        }
+
+        .focus-list {
+            display: grid;
+            gap: 0.35rem;
+            margin-top: var(--space-3);
+            color: var(--chalk-muted);
+            font-size: 0.98rem;
+        }
+
+        .focus-list li::before {
+            margin-right: 0.5rem;
+            color: var(--solar);
+            content: "—";
+        }
+
+        .content-section {
+            display: grid;
+            grid-template-columns: repeat(12, minmax(0, 1fr));
+            gap: var(--space-6) var(--space-5);
+            padding-block: var(--space-8);
+            scroll-margin-top: 2rem;
+        }
+
+        .section-rail {
+            grid-column: 1 / span 3;
+            align-self: start;
+        }
+
+        .section-number {
+            display: flex;
+            align-items: center;
+            color: var(--chalkboard);
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .section-number::before {
+            width: 0.8rem;
+        }
+
+        .section-rail h2 {
+            margin-top: var(--space-3);
+            color: var(--chalkboard);
+            font-size: clamp(2.2rem, 4vw, 3.5rem);
+            letter-spacing: -0.05em;
+        }
+
+        .section-caption {
+            max-width: 15rem;
+            margin-top: var(--space-4);
+        }
+
+        .section-content {
+            grid-column: 5 / -1;
+            min-width: 0;
+        }
+
+        .about-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1.25fr) minmax(15rem, 0.75fr);
+            gap: var(--space-7);
+            align-items: start;
+        }
+
+        .about-copy {
+            max-width: 44rem;
+        }
+
+        .about-copy p + p {
+            margin-top: var(--space-4);
+        }
+
+        .profile-facts {
+            border-top: 2px solid var(--chalkboard);
+        }
+
+        .profile-facts h3 {
+            margin: var(--space-3) 0 var(--space-2);
+            color: var(--muted-ink);
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .facts-list div {
+            display: grid;
+            grid-template-columns: 0.8fr 1.2fr;
+            gap: var(--space-3);
+            padding-block: var(--space-3);
+            border-bottom: 1px solid var(--rule);
+        }
+
+        .facts-list dt {
+            color: var(--muted-ink);
+            font-size: 0.9rem;
+        }
+
+        .facts-list dd {
+            margin: 0;
+            font-weight: 600;
+        }
+
+        .learning-section {
+            width: 100vw;
+            margin-inline: calc(50% - 50vw);
+            padding: var(--space-8) max(1.25rem, calc((100vw - var(--content-max)) / 2));
+            background: var(--chalkboard);
+            color: var(--chalk);
+        }
+
+        .learning-section .section-rail h2,
+        .learning-section .section-number,
+        .learning-section .section-caption {
+            color: var(--chalk);
+        }
+
+        .learning-section .section-number::before {
+            background: var(--solar);
+        }
+
+        .learning-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: var(--space-5);
+        }
+
+        .learning-group {
+            min-height: 19rem;
+            padding: var(--space-4);
+            border-block: 2px solid var(--rule);
+        }
+
+        .learning-group--practicing {
+            border-block: 3px double var(--solar);
+        }
+
+        .learning-group--next {
+            border-block: 2px dotted var(--rule);
+        }
+
+        .learning-group h3 {
+            color: var(--chalk);
+            font-size: 1.2rem;
+        }
+
+        .learning-group ul {
+            margin-top: var(--space-4);
+        }
+
+        .learning-group li {
+            padding-block: 0.72rem;
+            border-bottom: 1px solid var(--chalk-rule);
+            color: var(--chalk-muted);
+        }
+
+        .learning-group li:last-child {
+            border-bottom: 0;
+        }
+
+        .learning-note {
+            margin-top: var(--space-5);
+            color: var(--chalk-muted);
+            font-size: 0.95rem;
+        }
+
+        .work-section {
+            padding-bottom: var(--space-8);
+        }
+
+        .project-list {
+            grid-column: 5 / -1;
+        }
+
+        .project-record {
+            display: grid;
+            grid-template-columns: 5rem minmax(0, 1fr);
+            gap: var(--space-5);
+            padding-block: var(--space-6);
+            border-top: 1px solid var(--ink);
+        }
+
+        .project-record:first-child {
+            padding-top: 0;
+            border-top: 0;
+        }
+
+        .project-index {
+            color: var(--solar-deep);
+            font-family: var(--font-mono);
+            font-size: clamp(2.2rem, 5vw, 4rem);
+            font-variant-numeric: tabular-nums;
+            line-height: 0.9;
+        }
+
+        .project-kicker {
+            margin-bottom: var(--space-3);
+        }
+
+        .project-record h3 {
+            color: var(--chalkboard);
+            font-size: clamp(1.65rem, 3vw, 2.4rem);
+            letter-spacing: -0.04em;
+        }
+
+        .project-purpose {
+            max-width: 42rem;
+            margin-top: var(--space-3);
+            font-size: 1.25rem;
+            line-height: 1.45;
+        }
+
+        .project-description {
+            max-width: 42rem;
+            margin-top: var(--space-3);
+            color: var(--muted-ink);
+        }
+
+        .project-meta {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: var(--space-4);
+            max-width: 42rem;
+            margin-top: var(--space-5);
+            padding-top: var(--space-4);
+            border-top: 1px solid var(--rule);
+        }
+
+        .project-meta p {
+            color: var(--muted-ink);
+            font-size: 0.98rem;
+        }
+
+        .project-meta strong {
+            display: block;
+            margin-bottom: 0.3rem;
+            color: var(--ink);
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .contact-section {
+            width: 100vw;
+            margin-inline: calc(50% - 50vw);
+            padding: var(--space-8) max(1.25rem, calc((100vw - var(--content-max)) / 2));
+            background: var(--chalkboard);
+            color: var(--chalk);
+            scroll-margin-top: 2rem;
+        }
+
+        .contact-layout {
+            display: grid;
+            grid-template-columns: repeat(12, minmax(0, 1fr));
+            gap: var(--space-6) var(--space-5);
+        }
+
+        .contact-intro {
+            grid-column: 1 / span 4;
+        }
+
+        .contact-intro h2 {
+            color: var(--chalk);
+            font-size: clamp(2.2rem, 4vw, 3.5rem);
+            letter-spacing: -0.05em;
+        }
+
+        .contact-intro p {
+            max-width: 25rem;
+            margin-top: var(--space-4);
+            color: var(--chalk-muted);
+        }
+
+        .contact-details {
+            display: grid;
+            gap: 0.55rem;
+            margin-top: var(--space-5);
+        }
+
+        .contact-email,
+        .contact-detail-link {
+            display: inline-block;
+            color: var(--chalk);
+            font-weight: 700;
+            text-underline-offset: 0.3rem;
+        }
+
+        .contact-form {
+            grid-column: 6 / -1;
+        }
+
+        .form-summary {
+            margin-bottom: var(--space-4);
+            padding: var(--space-3) var(--space-4);
+            border-left: 3px solid var(--error-light);
+            background: rgba(16, 36, 31, 0.55);
+            color: var(--chalk);
+        }
+
+        .form-summary p {
+            font-weight: 700;
+        }
+
+        .form-summary ul {
+            display: grid;
+            gap: 0.25rem;
+            margin-top: var(--space-2);
+            padding-left: var(--space-4);
+            list-style: disc;
+        }
+
+        .form-summary a {
+            color: var(--chalk);
+            text-underline-offset: 0.2rem;
+        }
+
+        .field-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: var(--space-4);
+        }
+
+        .field {
+            min-width: 0;
+        }
+
+        .field + .field,
+        .field-grid + .field,
+        .field + .field-grid {
+            margin-top: var(--space-4);
+        }
+
+        .field label {
+            display: block;
+            margin-bottom: 0.4rem;
+            color: var(--chalk);
+            font-size: 0.98rem;
+            font-weight: 700;
+        }
+
+        .field-help {
+            display: block;
+            margin-top: 0.45rem;
+            color: var(--chalk-muted);
+            font-family: var(--font-body);
+            font-size: 0.88rem;
+            letter-spacing: normal;
+        }
+
+        .field input,
+        .field textarea {
+            display: block;
+            width: 100%;
+            min-height: var(--control-height);
+            padding: 0.7rem 0;
+            border: 0;
+            border-bottom: 1px solid var(--chalk-muted);
+            border-radius: 0;
+            background: transparent;
+            color: var(--chalk);
+        }
+
+        .field textarea {
+            min-height: 8rem;
+            resize: vertical;
+        }
+
+        .field input::placeholder,
+        .field textarea::placeholder {
+            color: var(--chalk-muted);
+            opacity: 1;
+        }
+
+        .field input:focus,
+        .field textarea:focus {
+            border-bottom-color: var(--solar);
+            box-shadow: var(--focus-shadow);
+            outline: 0;
+        }
+
+        .field.is-invalid input,
+        .field.is-invalid textarea {
+            border-bottom-color: var(--error-light);
+        }
+
+        .field-error {
+            margin-top: 0.45rem;
+            color: var(--error-light);
+            font-size: 0.9rem;
+        }
+
+        .form-actions {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: var(--space-4);
+            margin-top: var(--space-5);
+        }
+
+        .status-message {
+            position: relative;
+            flex: 1 1 100%;
+            padding: var(--space-3) var(--space-4);
+            border-left: 3px solid var(--solar);
+            background: rgba(16, 36, 31, 0.55);
+            color: var(--chalk);
+        }
+
+        .status-message--success {
+            border-left-color: var(--solar);
+        }
+
+        .status-message--error {
+            border-left-color: var(--error-light);
+        }
+
+        .button-spinner {
+            display: inline-block;
+            width: 0.9rem;
+            height: 0.9rem;
+            margin-left: 0.55rem;
+            border: 2px solid rgba(16, 36, 31, 0.35);
+            border-top-color: var(--ink);
+            border-radius: 50%;
+            animation: spin 700ms linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .site-footer {
+            border-top: 1px solid var(--chalk);
+            background: var(--chalkboard);
+            color: var(--chalk);
+        }
+
+        .footer-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: var(--space-4);
+            min-height: 4rem;
+        }
+
+        .footer-name {
+            font-weight: 700;
+        }
+
+        .footer-meta {
+            color: var(--chalk-muted);
+        }
+
+        .footer-link {
+            color: var(--chalk);
+            font-weight: 700;
+            text-underline-offset: 0.3rem;
+        }
+
+        @media (max-width: 47.5rem) {
+            :root {
+                --body-size: 1.0625rem;
+            }
+
+            .shell {
+                width: min(100% - 2.5rem, var(--content-max));
+            }
+
+            .masthead {
+                position: relative;
+                flex-wrap: wrap;
+                gap: var(--space-3);
+                min-height: 4rem;
+                padding-block: 0.65rem;
+            }
+
+            .masthead-label {
+                margin-right: auto;
+            }
+
+            .menu-toggle {
+                display: inline-flex;
+            }
+
+            .site-nav {
+                display: none;
+                flex-basis: 100%;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 0;
+                padding-block: var(--space-2) var(--space-3);
+                border-top: 1px solid var(--rule);
+            }
+
+            .site-nav[data-open="true"] {
+                display: grid;
+            }
+
+            .site-nav a {
+                min-height: 2.75rem;
+                padding-block: 0.65rem;
+            }
+
+            .intro {
+                display: block;
+                min-height: auto;
+                padding-block: var(--space-7) var(--space-6);
+            }
+
+            .intro h1 {
+                max-width: 7ch;
+                font-size: clamp(3.4rem, 18vw, 5.8rem);
+            }
+
+            .focus-panel {
+                margin-top: var(--space-6);
+            }
+
+            .content-section,
+            .contact-layout {
+                display: block;
+                padding-block: var(--space-7);
+            }
+
+            .section-rail {
+                margin-bottom: var(--space-5);
+            }
+
+            .section-caption {
+                max-width: 25rem;
+            }
+
+            .about-layout {
+                display: block;
+            }
+
+            .profile-facts {
+                margin-top: var(--space-6);
+            }
+
+            .learning-section,
+            .contact-section {
+                padding-inline: 1.25rem;
+            }
+
+            .learning-grid {
+                display: flex;
+                flex-direction: column;
+                gap: var(--space-4);
+            }
+
+            .learning-group {
+                min-height: 0;
+            }
+
+            .learning-group--practicing {
+                order: -1;
+            }
+
+            .project-list {
+                display: block;
+            }
+
+            .project-record {
+                grid-template-columns: 3.25rem minmax(0, 1fr);
+                gap: var(--space-3);
+            }
+
+            .project-meta,
+            .field-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-intro,
+            .contact-form {
+                display: block;
+            }
+
+            .contact-form {
+                margin-top: var(--space-6);
+            }
+
+            .footer-inner {
+                align-items: flex-start;
+                flex-direction: column;
+                justify-content: center;
+                padding-block: var(--space-4);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <header class="site-header" id="top">
+        <div class="shell masthead">
+            <a class="wordmark" href="#top" aria-label="Elson Chakonza home">[EC] / WT</a>
+            <p class="masthead-label">Student profile</p>
+            <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+                <span data-menu-label>Menu</span>
+                <span class="menu-mark" aria-hidden="true"></span>
+            </button>
+            <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
+                <a href="#about-section" aria-current="location">About</a>
+                <a href="#learning-section">Learning</a>
+                <a href="#work-section">Work</a>
+                <a href="#contact-section">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content" tabindex="-1">
+        <div class="shell">
+            <section class="intro" id="intro-section" aria-labelledby="intro-heading">
+                <div class="intro-copy">
+                    <p class="intro-kicker">Web Technologies · Year 2</p>
+                    <h1 id="intro-heading">Elson<br>Chakonza<span class="name-dot" aria-hidden="true">.</span></h1>
+                    <p class="intro-lead">Software Engineering and Computer Science student building clear, accessible web pages while learning how the browser works.</p>
+                    <div class="intro-actions">
+                        <a class="link-primary" href="#work-section">View my work <span aria-hidden="true">→</span></a>
+                        <a class="text-link" href="mailto:elsonchak@gmail.com">Email me <span aria-hidden="true">→</span></a>
+                    </div>
+                </div>
+
+                <aside class="focus-panel" aria-labelledby="focus-heading">
+                    <p class="panel-kicker">Current focus / 00</p>
+                    <p class="focus-copy">Hi, I’m Elson. I build clear, accessible web pages while learning how the browser works.</p>
+                    <h2 id="focus-heading">Currently learning</h2>
+                    <ul class="focus-list">
+                        <li>DOM events and form behavior</li>
+                        <li>Accessible navigation</li>
+                        <li>Responsive page structure</li>
+                    </ul>
+                </aside>
+            </section>
+
+            <section class="content-section" id="about-section" aria-labelledby="about-heading">
+                <div class="section-rail">
+                    <p class="section-number">01</p>
+                    <h2 id="about-heading">About</h2>
+                    <p class="section-caption">A short introduction and the context behind my current learning.</p>
+                </div>
+                <div class="section-content about-layout">
+                    <article class="about-copy">
+                        <p>I am studying software engineering and computer science, with a growing interest in how thoughtful HTML, CSS, and JavaScript can make useful ideas easier to access.</p>
+                        <p>I am working on clearer structure, accessible interaction, and maintainable code. Each small project gives me a chance to practise explaining decisions instead of only making a page look finished.</p>
+                    </article>
+                    <aside class="profile-facts" aria-labelledby="facts-heading">
+                        <h3 id="facts-heading">At a glance</h3>
+                        <dl class="facts-list">
+                            <div>
+                                <dt>Course</dt>
+                                <dd>Web Technologies</dd>
+                            </div>
+                            <div>
+                                <dt>Study year</dt>
+                                <dd>Year 2, Semester 1</dd>
+                            </div>
+                            <div>
+                                <dt>Based in</dt>
+                                <dd>Zimbabwe</dd>
+                            </div>
+                            <div>
+                                <dt>Interested in</dt>
+                                <dd>Semantic HTML, accessible interfaces, and practical JavaScript</dd>
+                            </div>
+                        </dl>
+                    </aside>
+                </div>
+            </section>
+
+            <section class="content-section learning-section" id="learning-section" aria-labelledby="learning-heading">
+                <div class="section-rail">
+                    <p class="section-number">02</p>
+                    <h2 id="learning-heading">Learning</h2>
+                    <p class="section-caption">An honest snapshot of what I use, practise, and want to understand next.</p>
+                </div>
+                <div class="section-content learning-grid">
+                    <article class="learning-group learning-group--comfortable">
+                        <h3>Comfortable using</h3>
+                        <ul>
+                            <li>Semantic HTML</li>
+                            <li>Responsive CSS</li>
+                            <li>Flexbox and Grid</li>
+                            <li>Git basics</li>
+                        </ul>
+                    </article>
+                    <article class="learning-group learning-group--practicing">
+                        <h3>Practicing now</h3>
+                        <ul>
+                            <li>DOM events</li>
+                            <li>Form validation</li>
+                            <li>Accessibility testing</li>
+                            <li>Organizing JavaScript</li>
+                        </ul>
+                    </article>
+                    <article class="learning-group learning-group--next">
+                        <h3>Learning next</h3>
+                        <ul>
+                            <li>Fetching API data</li>
+                            <li>Local storage</li>
+                            <li>Component-like code structure</li>
+                        </ul>
+                    </article>
+                    <p class="learning-note">This is a learning snapshot, not a percentage score.</p>
+                </div>
+            </section>
+
+            <section class="content-section work-section" id="work-section" aria-labelledby="work-heading">
+                <div class="section-rail">
+                    <p class="section-number">03</p>
+                    <h2 id="work-heading">Selected work</h2>
+                    <p class="section-caption">One current coursework project, described by the decisions I practised.</p>
+                </div>
+                <div class="project-list">
+                    <article class="project-record">
+                        <p class="project-index" aria-hidden="true">01</p>
+                        <div>
+                            <p class="project-kicker">Coursework / Current</p>
+                            <h3>Student profile page</h3>
+                            <p class="project-purpose">A semantic one-page profile that makes a student’s learning direction easy to understand.</p>
+                            <p class="project-description">This page brings together the HTML5 structure, accessible navigation, learning map, and contact form required for my Web Technologies practical assignment.</p>
+                            <div class="project-meta">
+                                <p><strong>Built with</strong>HTML, CSS, and JavaScript</p>
+                                <p><strong>What I practised</strong>Heading hierarchy, anchored navigation, accessible labels, and native validation.</p>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+        </div>
+
+        <section class="contact-section" id="contact-section" aria-labelledby="contact-heading">
+            <div class="contact-layout">
+                <div class="contact-intro">
+                    <p class="section-number">04</p>
+                    <h2 id="contact-heading">Send a message</h2>
+                    <p>Have a question about my work or want to compare class notes? I’ll reply as soon as I can.</p>
+                    <div class="contact-details">
+                        <address>
+                            <a class="contact-email" href="mailto:elsonchak@gmail.com">elsonchak@gmail.com</a>
+                        </address>
+                        <a class="contact-detail-link" href="tel:+263784490014">+263 784 490 014</a>
+                        <a class="contact-detail-link" href="https://www.instagram.com/sheloves_.hoops/" target="_blank" rel="noreferrer">Instagram: @sheloves_.hoops<span class="visually-hidden"> (opens in a new tab)</span></a>
+                    </div>
+                </div>
+
+                <form class="contact-form" id="contact-form" action="#contact-section" method="get">
+                    <div class="form-summary form-summary--error" id="form-error-summary" role="alert" tabindex="-1" hidden>
+                        <p>Please check the fields marked below.</p>
+                        <ul id="error-summary-list"></ul>
+                    </div>
+
+                    <div class="field-grid">
+                        <div class="field" data-field="name">
+                            <label for="name">Your name</label>
+                            <input id="name" name="name" type="text" autocomplete="name" minlength="2" maxlength="80" required aria-describedby="name-help name-error" placeholder="Elson Chakonza">
+                            <span class="field-help" id="name-help">Use your name so I know who is writing.</span>
+                            <p class="field-error" id="name-error" hidden></p>
+                        </div>
+                        <div class="field" data-field="email">
+                            <label for="email">Email address</label>
+                            <input id="email" name="email" type="email" autocomplete="email" maxlength="120" required aria-describedby="email-help email-error" placeholder="name@example.com">
+                            <span class="field-help" id="email-help">I will use this only to reply to your message.</span>
+                            <p class="field-error" id="email-error" hidden></p>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label for="phone">Phone number <span class="field-help">(optional)</span></label>
+                        <input id="phone" name="phone" type="tel" autocomplete="tel" pattern="^\\+?[0-9()\\s-]{7,}$" aria-describedby="phone-help phone-error" placeholder="+263 7XX XXX XXX">
+                        <span class="field-help" id="phone-help">Include a country code when possible.</span>
+                        <p class="field-error" id="phone-error" hidden></p>
+                    </div>
+
+                    <div class="field">
+                        <label for="subject">Subject</label>
+                        <input id="subject" name="subject" type="text" maxlength="120" required aria-describedby="subject-error" placeholder="What would you like to discuss?">
+                        <p class="field-error" id="subject-error" hidden></p>
+                    </div>
+
+                    <div class="field">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" minlength="10" maxlength="600" required aria-describedby="message-help message-error" placeholder="Write a short message about your question or idea."></textarea>
+                        <span class="field-help" id="message-help">A few clear sentences are enough.</span>
+                        <p class="field-error" id="message-error" hidden></p>
+                    </div>
+
+                    <div class="form-actions">
+                        <p class="status-message" id="form-status" role="status" aria-live="polite" tabindex="-1" hidden></p>
+                        <button class="button-primary" type="submit">
+                            <span data-submit-label>Send message</span>
+                            <span class="button-spinner" aria-hidden="true" hidden></span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer" id="site-footer">
+        <div class="shell footer-inner">
+            <p class="footer-name">Elson Chakonza</p>
+            <p class="footer-meta">Web Technologies · <time datetime="2026">2026</time></p>
+            <a class="footer-link" href="#top">Back to top <span aria-hidden="true">↑</span></a>
+        </div>
+    </footer>
+
+    <script>
+        (() => {
+            const menuButton = document.querySelector('.menu-toggle');
+            const siteNav = document.querySelector('#site-nav');
+            const menuLabel = document.querySelector('[data-menu-label]');
+
+            const closeMenu = () => {
+                if (!menuButton || !siteNav) return;
+                menuButton.setAttribute('aria-expanded', 'false');
+                menuLabel.textContent = 'Menu';
+                siteNav.dataset.open = 'false';
+            };
+
+            if (menuButton && siteNav) {
+                menuButton.addEventListener('click', () => {
+                    const isOpen = menuButton.getAttribute('aria-expanded') === 'true';
+                    menuButton.setAttribute('aria-expanded', String(!isOpen));
+                    menuLabel.textContent = isOpen ? 'Menu' : 'Close';
+                    siteNav.dataset.open = String(!isOpen);
+                });
+
+                siteNav.querySelectorAll('a').forEach((link) => {
+                    link.addEventListener('click', closeMenu);
+                });
+            }
+
+            const navigationLinks = [...document.querySelectorAll('.site-nav a[href^="#"]')];
+            const trackedSections = navigationLinks
+                .map((link) => document.querySelector(link.getAttribute('href')))
+                .filter(Boolean);
+
+            const setActiveSection = (sectionId) => {
+                navigationLinks.forEach((link) => {
+                    const isCurrent = link.getAttribute('href') === `#${sectionId}`;
+                    if (isCurrent) {
+                        link.setAttribute('aria-current', 'location');
+                    } else {
+                        link.removeAttribute('aria-current');
+                    }
+                });
+            };
+
+            if ('IntersectionObserver' in window && trackedSections.length) {
+                const sectionObserver = new IntersectionObserver((entries) => {
+                    const visibleEntry = entries
+                        .filter((entry) => entry.isIntersecting)
+                        .sort((first, second) => second.intersectionRatio - first.intersectionRatio)[0];
+
+                    if (visibleEntry) setActiveSection(visibleEntry.target.id);
+                }, { rootMargin: '-18% 0px -62% 0px', threshold: [0, 0.2, 0.5] });
+
+                trackedSections.forEach((section) => sectionObserver.observe(section));
+            }
+
+            const form = document.querySelector('#contact-form');
+            if (!form) return;
+
+            const formSummary = document.querySelector('#form-error-summary');
+            const errorSummaryList = document.querySelector('#error-summary-list');
+            const formStatus = document.querySelector('#form-status');
+            const submitButton = form.querySelector('button[type="submit"]');
+            const submitLabel = form.querySelector('[data-submit-label]');
+            const spinner = form.querySelector('.button-spinner');
+            const fields = [
+                { id: 'name', message: 'Enter your name.' },
+                { id: 'email', message: 'Enter a valid email address.' },
+                { id: 'phone', message: 'Enter a valid phone number.' },
+                { id: 'subject', message: 'Add a subject.' },
+                { id: 'message', message: 'Write a short message.' }
+            ];
+
+            // Keep native browser validation as the baseline when JavaScript is unavailable.
+            form.setAttribute('novalidate', '');
+
+            const getFieldParts = (fieldConfig) => {
+                const input = document.querySelector(`#${fieldConfig.id}`);
+                const wrapper = input ? input.closest('.field') : null;
+                const error = document.querySelector(`#${fieldConfig.id}-error`);
+                return { input, wrapper, error };
+            };
+
+            const getValidationMessage = (input, fallbackMessage) => {
+                if (input.validity.valueMissing) return fallbackMessage;
+                if (input.validity.typeMismatch) return 'Enter a valid email address.';
+                if (input.validity.patternMismatch) return 'Enter a valid phone number.';
+                if (input.validity.tooShort) return `Use at least ${input.minLength} characters.`;
+                if (input.validity.tooLong) return `Use no more than ${input.maxLength} characters.`;
+                return '';
+            };
+
+            const validateField = (fieldConfig) => {
+                const { input, wrapper, error } = getFieldParts(fieldConfig);
+                if (!input || !wrapper || !error) return '';
+
+                const message = getValidationMessage(input, fieldConfig.message);
+                const isInvalid = Boolean(message);
+                wrapper.classList.toggle('is-invalid', isInvalid);
+                input.setAttribute('aria-invalid', String(isInvalid));
+                error.textContent = message;
+                error.hidden = !isInvalid;
+                return message;
+            };
+
+            const clearStatus = () => {
+                formStatus.hidden = true;
+                formStatus.textContent = '';
+                formStatus.className = 'status-message';
+            };
+
+            fields.forEach((fieldConfig) => {
+                const { input } = getFieldParts(fieldConfig);
+                if (!input) return;
+                input.addEventListener('blur', () => validateField(fieldConfig));
+                input.addEventListener('input', () => {
+                    if (input.getAttribute('aria-invalid') === 'true') validateField(fieldConfig);
+                    clearStatus();
+                });
+            });
+
+            form.addEventListener('submit', (event) => {
+                event.preventDefault();
+                clearStatus();
+
+                const invalidFields = fields
+                    .map((fieldConfig) => ({ fieldConfig, message: validateField(fieldConfig) }))
+                    .filter(({ message }) => message);
+
+                if (invalidFields.length) {
+                    errorSummaryList.innerHTML = invalidFields
+                        .map(({ fieldConfig, message }) => `<li><a href="#${fieldConfig.id}">${message}</a></li>`)
+                        .join('');
+                    formSummary.hidden = false;
+                    formSummary.focus();
+                    return;
+                }
+
+                formSummary.hidden = true;
+                submitButton.disabled = true;
+                form.setAttribute('aria-busy', 'true');
+                submitLabel.textContent = 'Sending…';
+                spinner.hidden = false;
+
+                // This is a local demonstration because the assignment does not provide a server endpoint.
+                window.setTimeout(() => {
+                    submitButton.disabled = false;
+                    form.removeAttribute('aria-busy');
+                    submitLabel.textContent = 'Send message';
+                    spinner.hidden = true;
+                    form.reset();
+                    fields.forEach((fieldConfig) => {
+                        const { input, wrapper, error } = getFieldParts(fieldConfig);
+                        if (input && wrapper && error) {
+                            input.removeAttribute('aria-invalid');
+                            wrapper.classList.remove('is-invalid');
+                            error.textContent = '';
+                            error.hidden = true;
+                        }
+                    });
+                    formStatus.className = 'status-message status-message--success';
+                    formStatus.textContent = 'Thanks—your message has been sent.';
+                    formStatus.hidden = false;
+                    formStatus.focus();
+                }, 550);
+            });
+        })();
+    </script>
+</body>
+</html>
